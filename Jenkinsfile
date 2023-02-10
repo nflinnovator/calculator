@@ -5,7 +5,7 @@ pipeline {
               steps {
                 sh "./gradlew compileJava"
               }
-            }  
+           }  
            stage("Unit test") {
               steps {
                 sh "./gradlew test"
@@ -15,6 +15,11 @@ pipeline {
               steps {
                 sh "./gradlew jacocoTestReport"
                 sh "./gradlew jacocoTestCoverageVerification"
+              }
+           }
+           stage("Static code analysis") {
+              steps {
+                sh "./gradlew checkstyleMain"
               }
            }
          }  
