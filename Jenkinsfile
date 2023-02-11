@@ -30,18 +30,16 @@ pipeline {
                 sh "./gradlew build"
               }
            }
+
+          def dockerImage
+
           stage("Docker build") {
-              steps {
-                sh "docker build -t nflinnovator/calculator ."
-              }
+                  dockerImage.build("nflinnovator/calculator:latest")
+                 //sh "docker build -t nflinnovator/calculator ."
            }
            stage("Docker push") {
-              steps {
-                withDockerRegistry([ credentialsId: "docker-hub-credentials", url: "" ]) {
-                bat "docker push nflinnovator/calculator"
-                }
+                dockerImage.push()
                // sh "docker push nflinnovator/calculator"
-              }
            }
            stage("Deploy to staging") {
               steps {
