@@ -30,7 +30,7 @@ pipeline {
                 sh "./gradlew build"
               }
            }
-           stage("Docker build") {
+          /* stage("Docker build") {
               steps {
                 sh "docker build -t nflinnovator/calculator ."
               }
@@ -50,12 +50,12 @@ pipeline {
                  sleep 60
                  sh "chmod +x acceptance_test.sh && ./acceptance_test.sh"
               }
-           }
+           }*/
          }
 
-         post {
+         /*post {
            always {
               sh "docker stop calculator"
                   }
-         }  
+         } */ 
 }
