@@ -31,14 +31,15 @@ pipeline {
               }
            }
 
-          def dockerImage
-
           stage("Docker build") {
-                  dockerImage.build("nflinnovator/calculator:latest")
-                 //sh "docker build -t nflinnovator/calculator ."
+               steps{
+                 sh "docker build -t nflinnovator/calculator ."
+                }
            }
            stage("Docker push") {
-                dockerImage.push()
+                  withDockerRegistry([ credentialsId: "docker-hub-credentials", url: "" ]) {
+                  bat "docker push devopsglobalmedia/teamcitydocker:build"
+                    }
                // sh "docker push nflinnovator/calculator"
            }
            stage("Deploy to staging") {
