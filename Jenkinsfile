@@ -43,7 +43,12 @@ pipeline {
                
            stage("Docker push") {
                steps{
-                  sh "docker push nflinnovator/calculator"
+                  script{
+                    withDockerRegistry([ credentialsId: "docker-hub-credentials", url: "" ]) {
+                    bat "docker push nflinnovator/calculator"
+                     }
+                  }
+                 // sh "docker push nflinnovator/calculator"
                  }
            }
 
