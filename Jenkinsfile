@@ -45,7 +45,7 @@ pipeline {
                   steps {
                      script {
                          docker.withRegistry('https://index.docker.io/v1/', 'docker-hub-credentials') {
-                         bat 'docker push nflinnovator/calculator'
+                         sh 'docker push nflinnovator/calculator'
                          }
                      }
                   }
