@@ -42,14 +42,10 @@ pipeline {
            }
                
            stage("Docker push") {
-               steps{
-                  script{
                     docker.withRegistry('https://index.docker.io/v1/', 'docker-hub-credentials') {
-                       sh 'docker push nflinnovator/calculator'
+                       bat 'docker push nflinnovator/calculator'
                      }
-                  }
                  // sh "docker push nflinnovator/calculator"
-                 }
            }
 
            stage("Deploy to staging") {
