@@ -17,7 +17,7 @@ public class CalculatorApplication {
 	@Bean
         public ClientConfig hazelcastClientConfig() {
             ClientConfig clientConfig = new ClientConfig();
-            clientConfig.getNetworkConfig().addAddress("hazelcast");
+            clientConfig.getNetworkConfig().addAddress("192.168.8.104");
             return clientConfig;
         }
 
