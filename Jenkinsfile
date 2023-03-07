@@ -37,7 +37,7 @@ pipeline {
 
           stage("Docker build") {
                steps{
-                 sh "docker build -t nflinnovator/calculator ."
+                 sh "docker build -t nflinnovator/calculator:${BUILD_TIMESTAMP} ."
                 }
            }
                
@@ -45,7 +45,7 @@ pipeline {
                   steps {
                      script {
                          docker.withRegistry('https://index.docker.io/v1/', 'docker-hub-credentials') {
-                         sh 'docker push nflinnovator/calculator'
+                         sh 'docker push nflinnovator/calculator:${BUILD_TIMESTAMP}'
                          }
                      }
                   }
@@ -53,7 +53,7 @@ pipeline {
 
            stage("Deploy to staging") {
               steps {
-                sh "docker run -d --rm -p 8765:8080 --name calculator nflinnovator/calculator"
+                sh "docker run -d --rm -p 8765:8080 --name calculator nflinnovator/calculator:${BUILD_TIMESTAMP}"
               }
            }
 
