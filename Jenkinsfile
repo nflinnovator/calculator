@@ -5,11 +5,11 @@ pipeline {
      }*/
         stages {
           
-           stage("Checkout") {
+          /*stage("Checkout") {
              steps {
                 git url: 'https://github.com/nflinnovator/calculator.git', branch: 'main'
              }
-           }
+           }*/
 
            stage("Compile") {
               steps {
@@ -61,7 +61,7 @@ pipeline {
 
            stage("Update version") {
               steps {
-                sh "sed -i 's/{{VERSION}}/${BUILD_TIMESTAMP}/g'deployment.yaml"
+                sh "sed -i 's/{{VERSION}}/${BUILD_TIMESTAMP}/g' deployment.yaml"
               }
            }
 
