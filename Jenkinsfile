@@ -1,9 +1,16 @@
 pipeline {
      agent any
-     triggers {
+     /*triggers {
         pollSCM('* * * * * *')
-     }
+     }*/
         stages {
+          
+           stage("Checkout") {
+             steps {
+                git url: 'https://github.com/nflinnovator/calculator.git', branch: 'main'
+             }
+           }
+
            stage("Compile") {
               steps {
                 sh "./gradlew compileJava"
