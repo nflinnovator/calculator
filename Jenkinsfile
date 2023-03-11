@@ -67,7 +67,8 @@ pipeline {
 
            stage("Deploy to staging") {
               steps {
-                sh "kubectl config use-context staging"
+               
+                sh "kubectl config --kubeconfig=~/.kube/config use-context staging"
                 sh "kubectl apply -f hazelcast.yaml"
                 sh "kubectl apply -f deployment.yaml"
                 sh "kubectl apply -f service.yaml"
